@@ -24,8 +24,9 @@ async function testConnection() {
 }
 
 router.get("/hello", async (req, res) => {
-  const res = await testConnection();
-  res.send(res);
+  const result = await testConnection();
+  console.log(result);
+  res.send(result);
 });
 
 api.use("/api/", router);
