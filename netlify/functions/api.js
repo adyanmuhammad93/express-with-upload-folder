@@ -22,9 +22,10 @@ async function testConnection() {
   }
 }
 
-testConnection();
-
-router.get("/hello", (req, res) => res.send("Hello World!"));
+router.get("/hello", (req, res) => {
+  testConnection();
+  res.send("Hello World!");
+});
 
 api.use("/api/", router);
 
