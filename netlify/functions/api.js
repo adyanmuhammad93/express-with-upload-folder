@@ -15,16 +15,17 @@ const db = mysql.createPool({
 
 async function testConnection() {
   try {
-    await db.getConnection();
+    const response = await db.getConnection();
     console.log("Successfully connected to the database!");
+    return response;
   } catch (error) {
     console.error("An error occurred while connecting to the database:", error);
   }
 }
 
-router.get("/hello", (req, res) => {
-  testConnection();
-  res.send("Hello World!");
+router.get("/hello", async (req, res) => {
+  const res = await testConnection();
+  res.send(res);
 });
 
 api.use("/api/", router);
