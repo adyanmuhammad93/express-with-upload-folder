@@ -2,6 +2,9 @@
 external_node_modules = ["express"]
 node_bundler = "esbuild"
 
+[headers.values]
+Access-Control-Allow-Origin = "*"
+
 [[redirects]]
 force = true
 from = "/api/*"
