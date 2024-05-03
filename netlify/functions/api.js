@@ -12,7 +12,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://effulgent-granita-8e091e.netlify.app",
+  methods: "GET,POST,PUT, DELETE",
+};
+
+app.use(cors(corsOptions));
 
 // Use Routes
 app.use("/api/v1", sliderRoutes);
