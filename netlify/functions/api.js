@@ -12,18 +12,18 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const corsOptions = {
-  origin: "https://effulgent-granita-8e091e.netlify.app",
-  methods: "GET,POST,PUT, DELETE",
-};
-
-app.use(cors(corsOptions));
-
 // Use Routes
 app.use("/api/v1", sliderRoutes);
 app.use("/api/v1", laporanTahunanRoutes);
 app.use("/api/v1", majalahRoutes);
 app.use("/api/v1", penghargaanRoutes);
+
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+};
+
+app.use(cors(corsOptions));
 
 export const handler = serverless(app);
 
