@@ -2,7 +2,7 @@ import db from "../db.js";
 
 const getPenghargaans = async () => {
   try {
-    const [rows] = await db.execute("SELECT * FROM penghargaan");
+    const [rows] = await db.execute("SELECT * FROM penghargaan_sertifikasi");
     return rows;
   } catch (error) {
     console.log(error);
@@ -11,9 +11,10 @@ const getPenghargaans = async () => {
 
 const getPenghargaanById = async (id) => {
   try {
-    const [rows] = await db.execute("SELECT * FROM penghargaan WHERE id = ?", [
-      id,
-    ]);
+    const [rows] = await db.execute(
+      "SELECT * FROM penghargaan_sertifikasi WHERE id = ?",
+      [id]
+    );
     if (rows.length > 0) {
       return rows[0]; // Return the first (and should be the only) row
     } else {
@@ -35,14 +36,15 @@ const createPenghargaan = async (penghargaan) => {
   ];
   const values = fields.map((field) => penghargaan[field]);
   const placeholders = fields.map(() => "?").join(", ");
-  const sql = `INSERT INTO penghargaan (${fields.join(
+  const sql = `INSERT INTO penghargaan_sertifikasi (${fields.join(
     ", "
   )}) VALUES (${placeholders})`;
   const [result] = await db.execute(sql, values);
   if (result) {
-    const [rows] = await db.execute("SELECT * FROM penghargaan WHERE id = ?", [
-      result.insertId,
-    ]);
+    const [rows] = await db.execute(
+      "SELECT * FROM penghargaan_sertifikasi WHERE id = ?",
+      [result.insertId]
+    );
     return {
       message: "Data saved successfully!",
       id: result.insertId,
@@ -59,14 +61,14 @@ const updatePenghargaan = async (id, updatedFields) => {
     const values = Object.values(updatedFields);
     const fieldPlaceholders = fields.map((field) => `${field} = ?`).join(", ");
 
-    const sql = `UPDATE penghargaan SET ${fieldPlaceholders} WHERE id = ?`;
+    const sql = `UPDATE penghargaan_sertifikasi SET ${fieldPlaceholders} WHERE id = ?`;
     values.push(id); // Add the id to the end of the values array
 
     const [result] = await db.execute(sql, values);
 
     if (result.affectedRows > 0) {
       const [updatedRows] = await db.execute(
-        "SELECT * FROM penghargaan WHERE id = ?",
+        "SELECT * FROM penghargaan_sertifikasi WHERE id = ?",
         [id]
       );
       return {
@@ -83,7 +85,7 @@ const updatePenghargaan = async (id, updatedFields) => {
 
 const deletePenghargaan = async (id) => {
   try {
-    const sql = `DELETE FROM penghargaan WHERE id = ?`;
+    const sql = `DELETE FROM penghargaan_sertifikasi WHERE id = ?`;
     const [result] = await db.execute(sql, [id]);
 
     if (result.affectedRows > 0) {
