@@ -12,18 +12,13 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(cors()); // Local Dev
+// app.use(cors()); // Local Dev
 
 // Use Routes
 app.use("/api/v1", sliderRoutes);
 app.use("/api/v1", laporanTahunanRoutes);
 app.use("/api/v1", majalahRoutes);
 app.use("/api/v1", penghargaanRoutes);
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
 
 export const handler = serverless(app);
 
