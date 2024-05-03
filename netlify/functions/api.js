@@ -3,6 +3,7 @@ import cors from "cors"; // Local Dev
 import serverless from "serverless-http";
 import sliderRoutes from "./routes/sliderRoutes.js";
 import laporanTahunanRoutes from "./routes/laporanTahunanRoutes.js";
+import majalahRoutes from "./routes/majalahRoutes.js";
 
 const app = express();
 
@@ -10,11 +11,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.use(cors()); // Local Dev
+app.use(cors()); // Local Dev
 
 // Use Routes
 app.use("/api/v1", sliderRoutes);
 app.use("/api/v1", laporanTahunanRoutes);
+app.use("/api/v1", majalahRoutes);
 
 export const handler = serverless(app);
 
