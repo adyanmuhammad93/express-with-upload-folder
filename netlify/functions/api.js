@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import cors from "cors"; // Local Dev
+import cors from "cors";
 import serverless from "serverless-http";
 import sliderRoutes from "./routes/sliderRoutes.js";
 import laporanTahunanRoutes from "./routes/laporanTahunanRoutes.js";
@@ -12,7 +12,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.use(cors()); // Local Dev
+app.use(cors());
 
 // Use Routes
 app.use("/api/v1", sliderRoutes);
