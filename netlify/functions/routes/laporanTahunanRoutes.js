@@ -7,6 +7,7 @@ import {
   deleteLaporanTahunan,
 } from "../services/laporanTahunanServices.js";
 import multer from "multer";
+import cors from "cors";
 
 // Multer configuration for file uploads
 const storage = multer.memoryStorage();
@@ -132,5 +133,7 @@ laporanTahunanRoutes.delete("/laporan-tahunan/:id", async (req, res) => {
     });
   }
 });
+
+laporanTahunanRoutes.use(cors());
 
 export default laporanTahunanRoutes;
