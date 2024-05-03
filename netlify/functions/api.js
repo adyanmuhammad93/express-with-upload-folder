@@ -10,7 +10,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(cors()); // Local Dev
+// app.use(cors()); // Local Dev
 
 // Use Routes
 app.use("/api/v1", sliderRoutes);
