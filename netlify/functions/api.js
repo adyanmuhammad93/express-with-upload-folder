@@ -12,25 +12,13 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(cors());
+
 // Use Routes
 app.use("/api/v1", sliderRoutes);
 app.use("/api/v1", laporanTahunanRoutes);
 app.use("/api/v1", majalahRoutes);
 app.use("/api/v1", penghargaanRoutes);
-
-const corsOptions = {
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-};
-
-app.use(cors(corsOptions));
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 
 export const handler = serverless(app);
 

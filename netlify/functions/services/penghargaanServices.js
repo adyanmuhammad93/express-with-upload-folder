@@ -31,7 +31,6 @@ const createPenghargaan = async (penghargaan) => {
     "title_eng",
     "created_at",
     "file_cover",
-    "file",
     "status",
   ];
   const values = fields.map((field) => penghargaan[field]);
