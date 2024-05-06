@@ -1,10 +1,11 @@
-import express, { Router } from "express";
+import express from "express";
 import cors from "cors";
 import serverless from "serverless-http";
-import sliderRoutes from "./routes/sliderRoutes.js";
 import laporanTahunanRoutes from "./routes/laporanTahunanRoutes.js";
 import majalahRoutes from "./routes/majalahRoutes.js";
 import penghargaanRoutes from "./routes/penghargaanRoutes.js";
+import sliderRoutes from "./routes/sliderRoutes.js";
+import beritaRoutes from "./routes/beritaRoutes.js";
 
 const app = express();
 
@@ -15,10 +16,11 @@ app.use(express.json());
 app.use(cors());
 
 // Use Routes
-app.use("/api/v1", sliderRoutes);
 app.use("/api/v1", laporanTahunanRoutes);
 app.use("/api/v1", majalahRoutes);
 app.use("/api/v1", penghargaanRoutes);
+app.use("/api/v1", sliderRoutes);
+app.use("/api/v1", beritaRoutes);
 
 export const handler = serverless(app);
 
