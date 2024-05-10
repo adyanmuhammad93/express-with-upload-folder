@@ -6,6 +6,7 @@ import majalahRoutes from "./routes/majalahRoutes.js";
 import penghargaanRoutes from "./routes/penghargaanRoutes.js";
 import sliderRoutes from "./routes/sliderRoutes.js";
 import beritaRoutes from "./routes/beritaRoutes.js";
+import pesanRoutes from "./routes/pesanRoutes.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use("/api/v1", majalahRoutes);
 app.use("/api/v1", penghargaanRoutes);
 app.use("/api/v1", sliderRoutes);
 app.use("/api/v1", beritaRoutes);
+app.use("/api/v1", pesanRoutes);
 
 export const handler = serverless(app);
 
