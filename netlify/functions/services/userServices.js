@@ -5,22 +5,26 @@ const SECRET_KEY = "something-like-this"; // Replace with your actual secret key
 
 const authenticate = async (username, password) => {
   try {
-    const [users] = await db.execute(
-      "SELECT * FROM users WHERE username = ? AND password = ?",
-      [username, password]
-    );
+    const [users] = await db.execute("SELECT * FROM users WHERE username = ?", [
+      username,
+    ]);
     const user = users[0];
 
     if (user) {
-      const token = jwt.sign({ sub: user.id, role: user.role }, SECRET_KEY, {
-        expiresIn: "1h",
-      });
-      return { ...user, token };
+      if (user.password === password) {
+        const token = jwt.sign({ sub: user.id, role: user.role }, SECRET_KEY, {
+          expiresIn: "1h",
+        });
+        return { ...user, token };
+      } else {
+        throw new Error("Password is incorrect");
+      }
+    } else {
+      throw new Error("Username does not exist");
     }
-
-    return null;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 

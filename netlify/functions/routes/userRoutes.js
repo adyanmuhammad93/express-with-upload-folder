@@ -12,12 +12,11 @@ userRoutes.post("/register", async (req, res) => {
 
 userRoutes.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  const user = await authenticate(username, password);
-
-  if (user) {
+  try {
+    const user = await authenticate(username, password);
     res.json(user);
-  } else {
-    res.status(400).json({ message: "Username or password is incorrect" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 });
 
