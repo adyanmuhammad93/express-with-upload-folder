@@ -9,6 +9,7 @@ import beritaRoutes from "./routes/beritaRoutes.js";
 import pesanRoutes from "./routes/pesanRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import scmRoutes from "./routes/scmRoutes.js";
+import policyRoutes from "./routes/policyRoutes.js";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/api/v1", beritaRoutes);
 app.use("/api/v1", pesanRoutes);
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", scmRoutes);
+app.use("/api/v1", policyRoutes);
 
 export const handler = serverless(app);
 
