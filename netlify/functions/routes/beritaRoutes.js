@@ -95,7 +95,6 @@ beritaRoutes.put(
       content_ind: req.body.content_ind,
       content_eng: req.body.content_eng,
       date: req.body.date,
-      image: image.buffer,
       tags_ind: req.body.tags_ind,
       tags_eng: req.body.tags_eng,
       status: req.body.status,
