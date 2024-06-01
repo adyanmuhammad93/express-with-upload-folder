@@ -33,7 +33,7 @@ app.use("/api/v1", policyRoutes);
 // Serve static files
 app.use("/api/v1/uploads", express.static("uploads"));
 
-// export const handler = serverless(app);
+export const handler = serverless(app);
 
 // app.use((err, res) => {
 //   console.error(err.stack);
@@ -45,6 +45,6 @@ app.use("/api/v1/uploads", express.static("uploads"));
 // }); // Local Dev
 
 // Change this line to listen on the desired port (e.g., 80 for HTTP or 443 for HTTPS)
-app.listen(3000, () => {
-  console.log("Server is running on port 80");
-});
+// app.listen(3000, () => {
+//   console.log("Server is running on port 80");
+// });
