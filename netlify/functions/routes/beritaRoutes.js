@@ -10,12 +10,25 @@ import multer from "multer";
 import path from "path";
 
 // Multer configuration for file uploads
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "./uploads/");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + path.extname(file.originalname)); //Appending extension
+//   },
+// });
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads/");
+    const uploadPath = path.join(__dirname, "uploads");
+    console.log(`Uploading to: ${uploadPath}`);
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); //Appending extension
+    const fileName = Date.now() + path.extname(file.originalname);
+    console.log(`Filename: ${fileName}`);
+    cb(null, fileName);
   },
 });
 
