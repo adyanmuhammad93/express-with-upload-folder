@@ -7,4 +7,11 @@ const pool = mysql.createPool({
   database: "development_pdsi",
 });
 
+// const pool = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   password: "root",
+//   database: "development_pdsi",
+// });
+
 export default pool.promise();
